@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'As a car salesperson
+feature 'add and view manufacturers', %Q{'As a car salesperson
 I want to record a car manufacturer
 So that I can keep track of the types of cars found in the lot'
 } do
@@ -11,39 +11,36 @@ So that I can keep track of the types of cars found in the lot'
 # If I do not specify the required information, I am presented with errors.
 # If I specify the required information, the manufacturer is recorded and I am redirected to the index of manufacturers
 
-scenario 'user specifies manufacturer name and country' do
+  scenario 'user specifies manufacturer name and country' do
 
-  Manufacturer.create(name:"Toyota", country: "Japan")
-  visit '/manufacturers/new'
-  fill_in 'Name', with: "Ford"
-  fill_in 'Country', with: "USA"
-  click_on 'Create Manufacturer'
+    Manufacturer.create(name:"Toyota", country: "Japan")
+    visit '/manufacturers/new'
+    fill_in 'Name', with: "Ford"
+    fill_in 'Country', with: "USA"
+    click_on 'Create Manufacturer'
 
-  expect(page).to have_content 'Ford'
-  expect(page).to have_content 'USA'
-  expect(page).to have_content 'Toyota'
-  expect(page).to have_content 'Japan'
+    expect(page).to have_content 'Ford'
+    expect(page).to have_content 'USA'
+    expect(page).to have_content 'Toyota'
+    expect(page).to have_content 'Japan'
 
-end
+  end
 
-scenario 'manufacturer name is required ' do
+  scenario 'manufacturer name is required ' do
 
-  visit '/manufacturers/new'
-  fill_in 'Country', with: "USA"
-  click_on 'Create Manufacturer'
+    visit '/manufacturers/new'
+    fill_in 'Country', with: "USA"
+    click_on 'Create Manufacturer'
 
-  expect(page).to have_content "Can't be blank"
-end
+    expect(page).to have_content "can't be blank"
+  end
 
-scenario 'manufacturer country is required ' do
+  scenario 'manufacturer country is required ' do
 
-  visit '/manufacturers/new'
-  fill_in 'name', with: "Ford"
-  click_on 'Create Manufacturer'
+    visit '/manufacturers/new'
+    fill_in 'Name', with: "Ford"
+    click_on 'Create Manufacturer'
 
-  expect(page).to have_content "Can't be blank"
-end
-
-
-
+    expect(page).to have_content "can't be blank"
+  end
 end
