@@ -13,7 +13,25 @@
 
   <body>
 
-    <div><%= flash[:notice]%></div>
+    <div  class="contain-to-grid">
+    <nav class="top-bar" data-topbar>
+      <ul class="title-area">
+        <li class="name"><h1 style="color:white;font-family:Lucida Console;">Carz.com</h1></li>
+      </ul>
+
+    <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="/manufacturers">Manufacturers</a></li>
+      <li><a href="/cars">Cars</a></li>
+    </ul>
+    </section>
+
+    </nav>
+    </div>
+
+
+    <div class = "small-12 small-centered column flash"><h3><%= flash[:notice]%><h3></div>
 
     <%= yield %>
     <%= javascript_include_tag "application" %>

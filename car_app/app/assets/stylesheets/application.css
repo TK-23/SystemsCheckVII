@@ -15,3 +15,21 @@
  *= require foundation_and_overrides
 
  */
+
+ul {
+  list-style: none;
+}
+
+.title {
+  padding:1em;
+  text-align:center;
+}
+
+.flash {
+  background-color: green;
+  text-align: center;
+}
+
+.flash > h3 {
+  color:white;
+}

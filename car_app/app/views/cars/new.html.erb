@@ -1,5 +1,5 @@
 <%= simple_form_for @car do |f| %>
-  <%= f.input :manufacturer_id, collection: Manufacturer.all  %>
+  <%= f.input :manufacturer_id, collection: Manufacturer.all, label: link_to("Manufacturer", new_manufacturer_path)   %>
   <%= f.input :color %>
   <%= f.input :year, collection: (1920..2015).reverse_each %>
   <%= f.input :mileage %>

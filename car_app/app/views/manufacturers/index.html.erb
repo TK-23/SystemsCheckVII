@@ -1,8 +1,8 @@
-All Manufacturers
+<div class = "small-4 small-centered column title" ><h2>Manufacturers</h2></div>
 
 <ul>
-<li><%= link_to "Add Another", new_manufacturer_path %></li>
+<li class = "small-4 small-centered column title"><%= link_to "Add Another", new_manufacturer_path %></li>
 <% @manufacturers.each do |m| %>
-  <li><%= "#{m.name} - #{m.country}" %></li>
+  <li><div class = "small-2 small-centered column title"><%= "#{m.name} - #{m.country}" %></div></li>
 <% end %>
 </ul>

@@ -1,8 +1,12 @@
-All Cars
+<div class = "small-2 small-centered column title" ><h2>Cars</h2></div>
+
 
 <ul>
-<li><%= link_to "Add Another", new_car_path %></li>
+<li class = "small-4 small-centered column title"><%= link_to "Add Another", new_car_path %></li>
 <% @cars.each do |c| %>
-  <li><%= "#{c.manufacturer.name} - #{c.color} - #{c.year} - #{c.mileage}" %></li>
+  <li><div class = "small-4 small-centered column title">
+    <%= "#{c.manufacturer.name} - #{c.color} - #{c.year} - #{c.mileage}" %><br>
+    <em><%= "#{c.description}"%></em>
+  </div></li>
 <% end %>
 </ul>
