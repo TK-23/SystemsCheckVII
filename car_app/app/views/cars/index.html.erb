@@ -1,0 +1,8 @@
+All Cars
+
+<ul>
+<li><%= link_to "Add Another", new_car_path %></li>
+<% @cars.each do |c| %>
+  <li><%= "#{c.manufacturer.name} - #{c.color} - #{c.year} - #{c.mileage}" %></li>
+<% end %>
+</ul>

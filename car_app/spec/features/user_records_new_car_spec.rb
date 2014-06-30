@@ -15,13 +15,15 @@ So that I can list it in my lot'
 # Upon successfully creating a car, I am redirected back to the index of cars.
   scenario 'user specifies manufacturer name and country' do
 
+    Manufacturer.create(name:"Ford", country: "USA")
+
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
+    select "Ford", from: "Manufacturer"
     fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 2009
+    select "2009", from: "Year"
     fill_in 'Mileage', with: 10000
     fill_in 'Description', with: "Cool car"
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content 'Ford'
     expect(page).to have_content 'Red'
@@ -32,11 +34,13 @@ So that I can list it in my lot'
 
   scenario 'manufacturer required' do
 
+    Manufacturer.create(name:"Ford", country: "USA")
+
     visit '/cars/new'
     fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 2009
+    select "2009", from: "Year"
     fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content "can't be blank"
 
@@ -44,11 +48,13 @@ So that I can list it in my lot'
 
   scenario 'color required' do
 
+    Manufacturer.create(name:"Ford", country: "USA")
+
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
-    fill_in 'Year', with: 2009
+    select "Ford", from: "Manufacturer"
+    select "2009", from: "Year"
     fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content "can't be blank"
 
@@ -56,11 +62,13 @@ So that I can list it in my lot'
 
   scenario 'year required' do
 
+    Manufacturer.create(name:"Ford", country: "USA")
+
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
+    select "Ford", from: "Manufacturer"
     fill_in 'Color', with: "Red"
     fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content "can't be blank"
 
@@ -68,24 +76,13 @@ So that I can list it in my lot'
 
   scenario 'mileage required' do
 
-    visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
-    fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 2009
-    click_on 'Create Manufacturer'
-
-    expect(page).to have_content "can't be blank"
-
-  end
-
-  scenario 'year cannot be below 1920' do
+    Manufacturer.create(name:"Ford", country: "USA")
 
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
+    select "Ford", from: "Manufacturer"
     fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 1919
-    fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    select "2009", from: "Year"
+    click_on 'Create Car'
 
     expect(page).to have_content "can't be blank"
 
@@ -93,26 +90,30 @@ So that I can list it in my lot'
 
   scenario 'successful save of required info provides message' do
 
+    Manufacturer.create(name:"Ford", country: "USA")
+
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
+    select "Ford", from: "Manufacturer"
     fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 2009
+    select "2009", from: "Year"
     fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content 'Car Successfully Added'
   end
 
   scenario 'successful save redirects to index' do
 
-    Car.new( manufacturer: "Mazda", color: "Blue", year: 2005, mileage: 32 )
+    Manufacturer.create(name:"Ford", country: "USA")
+    mazda = Manufacturer.create(name:"Mazda", country: "Japan")
+    Car.create( manufacturer_id: mazda.id, color: "Blue", year: 2005, mileage: 32 )
 
     visit '/cars/new'
-    fill_in 'Manufacturer', with: "Ford"
+    select "Ford", from: "Manufacturer"
     fill_in 'Color', with: "Red"
-    fill_in 'Year', with: 2009
+    select "2009", from: "Year"
     fill_in 'Mileage', with: 10000
-    click_on 'Create Manufacturer'
+    click_on 'Create Car'
 
     expect(page).to have_content 'Mazda'
     expect(page).to have_content '2005'

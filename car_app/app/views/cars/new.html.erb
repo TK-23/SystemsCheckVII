@@ -1,0 +1,8 @@
+<%= simple_form_for @car do |f| %>
+  <%= f.input :manufacturer_id, collection: Manufacturer.all  %>
+  <%= f.input :color %>
+  <%= f.input :year, collection: (1920..2015).reverse_each %>
+  <%= f.input :mileage %>
+  <%= f.input :description %>
+  <%= f.submit "Create Car" %>
+<% end %>
